@@ -1,0 +1,189 @@
+name: Stash tvOS 專用影音版（最終版）
+desc: Apple TV 專用：Netflix / Disney+ / YouTube / Prime Video / HBO-Max / Apple TV+；含 10 個地區自動測速組與完整策略圖示。
+rules:
+- DOMAIN-SUFFIX,netflix.com,Netflix
+- DOMAIN-SUFFIX,nflxvideo.net,Netflix
+- DOMAIN-SUFFIX,nflximg.net,Netflix
+- DOMAIN-SUFFIX,nflximg.com,Netflix
+- DOMAIN-SUFFIX,nflxso.net,Netflix
+- DOMAIN-SUFFIX,nflxext.com,Netflix
+- DOMAIN-SUFFIX,disneyplus.com,Disney+
+- DOMAIN-SUFFIX,disney-plus.net,Disney+
+- DOMAIN-SUFFIX,dssott.com,Disney+
+- DOMAIN-SUFFIX,bamgrid.com,Disney+
+- DOMAIN-SUFFIX,youtube.com,YouTube
+- DOMAIN-SUFFIX,youtu.be,YouTube
+- DOMAIN-SUFFIX,googlevideo.com,YouTube
+- DOMAIN-SUFFIX,ytimg.com,YouTube
+- DOMAIN-SUFFIX,primevideo.com,Prime Video
+- DOMAIN-SUFFIX,amazonvideo.com,Prime Video
+- DOMAIN-SUFFIX,max.com,HBO / Max
+- DOMAIN-SUFFIX,hbomax.com,HBO / Max
+- DOMAIN-SUFFIX,hbo.com,HBO / Max
+- DOMAIN-SUFFIX,tv.apple.com,Apple TV+
+- DOMAIN-SUFFIX,tv.apple.com.cn,Apple TV+
+proxy-groups: #!append
+- name: 香港自動
+  type: url-test
+  include-all: true
+  filter: (?i)香港|港區|港区|港服|🇭🇰|hong[ _-]*kong|(^|[^a-z0-9])hk([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+- name: 澳門自動
+  type: url-test
+  include-all: true
+  filter: (?i)澳門|澳门|🇲🇴|macao|macau|(^|[^a-z0-9])mo([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/MO.png
+- name: 美國自動
+  type: url-test
+  include-all: true
+  filter: (?i)美國|美国|美西|美東|美东|🇺🇸|united[ _-]*states|america|los[ _-]*angeles|san[ _-]*jose|seattle|new[ _-]*york|(^|[^a-z0-9])(us|usa)([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+- name: 日本自動
+  type: url-test
+  include-all: true
+  filter: (?i)日本|🇯🇵|japan|tokyo|東京|东京|osaka|大阪|(^|[^a-z0-9])jp([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+- name: 韓國自動
+  type: url-test
+  include-all: true
+  filter: (?i)韓國|韩国|韓|韩|🇰🇷|korea|seoul|首爾|首尔
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+- name: 新加坡自動
+  type: url-test
+  include-all: true
+  filter: (?i)新加坡|獅城|狮城|🇸🇬|singapore|(^|[^a-z0-9])sg([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+- name: 台灣自動
+  type: url-test
+  include-all: true
+  filter: (?i)台灣|台湾|🇹🇼|taiwan|tai[ _-]*wan|taipei|台北|(^|[^a-z0-9])tw([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TW.png
+- name: 英國自動
+  type: url-test
+  include-all: true
+  filter: (?i)英國|英国|🇬🇧|united[ _-]*kingdom|great[ _-]*britain|britain|england|london|倫敦|伦敦|(^|[^a-z0-9])(uk|gb)([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+- name: 加拿大自動
+  type: url-test
+  include-all: true
+  filter: (?i)加拿大|🇨🇦|canada|toronto|多倫多|多伦多|vancouver|溫哥華|温哥华|(^|[^a-z0-9])ca([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Canada.png
+- name: 澳洲自動
+  type: url-test
+  include-all: true
+  filter: (?i)澳大利亞|澳大利亚|澳洲|🇦🇺|australia|sydney|悉尼|雪梨|melbourne|墨爾本|墨尔本|(^|[^a-z0-9])au([^a-z0-9]|$)
+  interval: 300
+  tolerance: 50
+  lazy: true
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png
+- name: Netflix
+  type: select
+  proxies:
+  - 美國自動
+  - 日本自動
+  - 新加坡自動
+  - 香港自動
+  - 台灣自動
+  - 韓國自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png
+- name: Disney+
+  type: select
+  proxies:
+  - 美國自動
+  - 日本自動
+  - 新加坡自動
+  - 香港自動
+  - 台灣自動
+  - 韓國自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney+.png
+- name: YouTube
+  type: select
+  proxies:
+  - 香港自動
+  - 日本自動
+  - 新加坡自動
+  - 美國自動
+  - 台灣自動
+  - 韓國自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+- name: Prime Video
+  type: select
+  proxies:
+  - 美國自動
+  - 日本自動
+  - 新加坡自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 香港自動
+  - 台灣自動
+  - 韓國自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video.png
+- name: HBO / Max
+  type: select
+  proxies:
+  - 美國自動
+  - 新加坡自動
+  - 香港自動
+  - 台灣自動
+  - 日本自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 韓國自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png
+- name: Apple TV+
+  type: select
+  proxies:
+  - 香港自動
+  - 台灣自動
+  - 日本自動
+  - 新加坡自動
+  - 美國自動
+  - 韓國自動
+  - 英國自動
+  - 加拿大自動
+  - 澳洲自動
+  - 澳門自動
+  icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_TV_Plus.png
