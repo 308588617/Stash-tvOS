@@ -1,0 +1,147 @@
+name: Stash tvOS 專用影音版（最終版）
+desc: Apple TV 專用：YouTube / Apple TV+ / Telegram / LinkedIn / Google / Microsoft / Emby / 中國大陸直連；含 10 個地區自動測速組與策略圖示。
+
+rules:
+  - DOMAIN-SUFFIX,telegram.org,Telegram
+  - DOMAIN-SUFFIX,t.me,Telegram
+  - DOMAIN-SUFFIX,telegra.ph,Telegram
+  - DOMAIN-SUFFIX,telegram.me,Telegram
+  - DOMAIN-SUFFIX,telegram-cdn.org,Telegram
+  - IP-CIDR,149.154.160.0/20,Telegram,no-resolve
+  - IP-CIDR,91.108.0.0/16,Telegram,no-resolve
+  - DOMAIN-SUFFIX,linkedin.com,LinkedIn
+  - DOMAIN-SUFFIX,licdn.com,LinkedIn
+  - DOMAIN-SUFFIX,linkedin.cn,LinkedIn
+  - DOMAIN-SUFFIX,google.com,Google
+  - DOMAIN-SUFFIX,googleapis.com,Google
+  - DOMAIN-SUFFIX,gstatic.com,Google
+  - DOMAIN-SUFFIX,googleusercontent.com,Google
+  - DOMAIN-SUFFIX,microsoft.com,Microsoft
+  - DOMAIN-SUFFIX,microsoftonline.com,Microsoft
+  - DOMAIN-SUFFIX,office.com,Microsoft
+  - DOMAIN-SUFFIX,office365.com,Microsoft
+  - DOMAIN-SUFFIX,live.com,Microsoft
+  - DOMAIN-SUFFIX,windows.net,Microsoft
+  - DOMAIN-SUFFIX,azure.com,Microsoft
+  - DOMAIN-SUFFIX,youtube.com,YouTube
+  - DOMAIN-SUFFIX,youtu.be,YouTube
+  - DOMAIN-SUFFIX,googlevideo.com,YouTube
+  - DOMAIN-SUFFIX,ytimg.com,YouTube
+  - DOMAIN-SUFFIX,tv.apple.com,Apple TV+
+  - DOMAIN-SUFFIX,tv.apple.com.cn,Apple TV+
+  - DOMAIN-SUFFIX,cn,中國大陸
+  - GEOIP,CN,中國大陸
+
+proxy-groups: #!append
+  - name: 中國大陸
+    type: select
+    proxies: [DIRECT]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China_Map.png
+  - name: Telegram
+    type: select
+    proxies: [新加坡自動, 美國自動, 日本自動, 香港自動, 台灣自動, 英國自動, 加拿大自動, 澳洲自動, 韓國自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
+  - name: LinkedIn
+    type: select
+    proxies: [美國自動, 新加坡自動, 香港自動, 日本自動, 台灣自動, 英國自動, 加拿大自動, 澳洲自動, 韓國自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Linkedin.png
+  - name: Google
+    type: select
+    proxies: [香港自動, 日本自動, 新加坡自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png
+  - name: Microsoft
+    type: select
+    proxies: [香港自動, 日本自動, 新加坡自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png
+  - name: Emby
+    type: select
+    proxies: [DIRECT, 香港自動, 日本自動, 新加坡自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png
+  - name: 香港自動
+    type: url-test
+    include-all: true
+    filter: '(?i)香港|港區|港区|港服|🇭🇰|hong[ _-]*kong|(^|[^a-z0-9])hk([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+  - name: 澳門自動
+    type: url-test
+    include-all: true
+    filter: '(?i)澳門|澳门|🇲🇴|macao|macau|(^|[^a-z0-9])mo([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/MO.png
+  - name: 美國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)美國|美国|美西|美東|美东|🇺🇸|united[ _-]*states|america|los[ _-]*angeles|san[ _-]*jose|seattle|new[ _-]*york|(^|[^a-z0-9])(us|usa)([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+  - name: 日本自動
+    type: url-test
+    include-all: true
+    filter: '(?i)日本|🇯🇵|japan|tokyo|東京|东京|osaka|大阪|(^|[^a-z0-9])jp([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+  - name: 韓國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)韓國|韩国|韓|韩|🇰🇷|korea|seoul|首爾|首尔'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+  - name: 新加坡自動
+    type: url-test
+    include-all: true
+    filter: '(?i)新加坡|獅城|狮城|🇸🇬|singapore|(^|[^a-z0-9])sg([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+  - name: 台灣自動
+    type: url-test
+    include-all: true
+    filter: '(?i)台灣|台湾|🇹🇼|taiwan|tai[ _-]*wan|taipei|台北|(^|[^a-z0-9])tw([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TW.png
+  - name: 英國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)英國|英国|🇬🇧|united[ _-]*kingdom|great[ _-]*britain|britain|england|london|倫敦|伦敦|(^|[^a-z0-9])(uk|gb)([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+  - name: 加拿大自動
+    type: url-test
+    include-all: true
+    filter: '(?i)加拿大|🇨🇦|canada|toronto|多倫多|多伦多|vancouver|溫哥華|温哥华|(^|[^a-z0-9])ca([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Canada.png
+  - name: 澳洲自動
+    type: url-test
+    include-all: true
+    filter: '(?i)澳大利亞|澳大利亚|澳洲|🇦🇺|australia|sydney|悉尼|雪梨|melbourne|墨爾本|墨尔本|(^|[^a-z0-9])au([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png
+  - name: YouTube
+    type: select
+    proxies: [香港自動, 日本自動, 新加坡自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+  - name: Apple TV+
+    type: select
+    proxies: [香港自動, 台灣自動, 日本自動, 新加坡自動, 美國自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_TV_Plus.png
