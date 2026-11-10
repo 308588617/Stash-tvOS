@@ -1,0 +1,132 @@
+name: Stash 綜合應用分流覆寫（最終版）
+desc: YouTube / Apple TV+ / EMBY / Telegram / LinkedIn / Google / Microsoft / Meta（Facebook、WhatsApp）分流；中國大陸域名與 IP 直連；含 10 個地區自動測速組。
+
+rules:
+  - DOMAIN-SUFFIX,youtube.com,YouTube
+  - DOMAIN-SUFFIX,youtu.be,YouTube
+  - DOMAIN-SUFFIX,googlevideo.com,YouTube
+  - DOMAIN-SUFFIX,ytimg.com,YouTube
+  - DOMAIN-SUFFIX,tv.apple.com,Apple TV+
+  - DOMAIN-SUFFIX,tv.apple.com.cn,Apple TV+
+
+  # 新增服務分流：可在 Stash 內手動選擇地區策略
+  - GEOSITE,emby,EMBY
+  - GEOSITE,telegram,Telegram
+  - GEOSITE,linkedin,LinkedIn
+  - GEOSITE,google,Google
+  - GEOSITE,microsoft,Microsoft
+  # Meta 系服務分流
+  - GEOSITE,facebook,Meta
+  - GEOSITE,whatsapp,Meta
+  # 中國大陸常用域名與中國 IP 直連
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
+
+proxy-groups: #!append
+  - name: 香港自動
+    type: url-test
+    include-all: true
+    filter: '(?i)香港|港區|港区|港服|🇭🇰|hong[ _-]*kong|(^|[^a-z0-9])hk([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+  - name: 澳門自動
+    type: url-test
+    include-all: true
+    filter: '(?i)澳門|澳门|🇲🇴|macao|macau|(^|[^a-z0-9])mo([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/MO.png
+  - name: 美國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)美國|美国|美西|美東|美东|🇺🇸|united[ _-]*states|america|los[ _-]*angeles|san[ _-]*jose|seattle|new[ _-]*york|(^|[^a-z0-9])(us|usa)([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png
+  - name: 日本自動
+    type: url-test
+    include-all: true
+    filter: '(?i)日本|🇯🇵|japan|tokyo|東京|东京|osaka|大阪|(^|[^a-z0-9])jp([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png
+  - name: 韓國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)韓國|韩国|韓|韩|🇰🇷|korea|seoul|首爾|首尔'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png
+  - name: 新加坡自動
+    type: url-test
+    include-all: true
+    filter: '(?i)新加坡|獅城|狮城|🇸🇬|singapore|(^|[^a-z0-9])sg([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+  - name: 台灣自動
+    type: url-test
+    include-all: true
+    filter: '(?i)台灣|台湾|🇹🇼|taiwan|tai[ _-]*wan|taipei|台北|(^|[^a-z0-9])tw([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TW.png
+  - name: 英國自動
+    type: url-test
+    include-all: true
+    filter: '(?i)英國|英国|🇬🇧|united[ _-]*kingdom|great[ _-]*britain|britain|england|london|倫敦|伦敦|(^|[^a-z0-9])(uk|gb)([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png
+  - name: 加拿大自動
+    type: url-test
+    include-all: true
+    filter: '(?i)加拿大|🇨🇦|canada|toronto|多倫多|多伦多|vancouver|溫哥華|温哥华|(^|[^a-z0-9])ca([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Canada.png
+  - name: 澳洲自動
+    type: url-test
+    include-all: true
+    filter: '(?i)澳大利亞|澳大利亚|澳洲|🇦🇺|australia|sydney|悉尼|雪梨|melbourne|墨爾本|墨尔本|(^|[^a-z0-9])au([^a-z0-9]|$)'
+    interval: 300
+    tolerance: 50
+    lazy: true
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Australia.png
+  - name: YouTube
+    type: select
+    proxies: [香港自動, 日本自動, 新加坡自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png
+  - name: Apple TV+
+    type: select
+    proxies: [香港自動, 台灣自動, 日本自動, 新加坡自動, 美國自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+    icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_TV_Plus.png
+
+  - name: EMBY
+    type: select
+    proxies: [香港自動, 新加坡自動, 日本自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+  - name: Telegram
+    type: select
+    proxies: [新加坡自動, 香港自動, 日本自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+  - name: LinkedIn
+    type: select
+    proxies: [美國自動, 香港自動, 新加坡自動, 日本自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+  - name: Google
+    type: select
+    proxies: [香港自動, 新加坡自動, 日本自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+  - name: Meta
+    type: select
+    proxies: [新加坡自動, 香港自動, 美國自動, 日本自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
+  - name: Microsoft
+    type: select
+    proxies: [香港自動, 新加坡自動, 日本自動, 美國自動, 台灣自動, 韓國自動, 英國自動, 加拿大自動, 澳洲自動, 澳門自動]
